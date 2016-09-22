@@ -4,6 +4,9 @@ import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
@@ -19,6 +22,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static android.R.attr.id;
+
 /**
  * Created by Nguyen Cong Thanh on 2016/09/21.
  */
@@ -29,7 +34,37 @@ public class ForecastFragment extends Fragment {
 
     String forecastJsonStr = null;
 
+    private final String LOG_TAG = ForecastFragment.class.getSimpleName();
+
     public ForecastFragment() {
+    }
+
+    @Override
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        //Add this line in order for thi fragment to handle menu events
+        setHasOptionsMenu(true);
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.forecastfragment, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
+
+        if (id == R.id.action_refresh) {
+            FetchWeatherTask weatherTask = new FetchWeatherTask();
+            weatherTask.execute();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
     @Override

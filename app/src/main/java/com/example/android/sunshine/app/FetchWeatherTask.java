@@ -40,7 +40,9 @@ public class FetchWeatherTask extends AsyncTask<Void,Void,Void> {
             // Construct the URL for the OpenWeatherMap query
             // Possible parameters are available at OWM's forecast API page, at
             // http://openweathermap.org/API#forecast
-            URL url = new URL("http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7");
+            String baseUrl = "http://api.openweathermap.org/data/2.5/forecast/daily?q=94043&mode=json&units=metric&cnt=7";
+            String apiKye = "&APPID=" + BuildConfig.OPEN_WEATHER_MAP_API_KEY;
+            URL url = new URL(baseUrl.concat(apiKye));
 
             // Create the request to OpenWeatherMap, and open the connection
             urlConnection = (HttpURLConnection) url.openConnection();
@@ -71,6 +73,7 @@ public class FetchWeatherTask extends AsyncTask<Void,Void,Void> {
                 return null;
             }
             forecastJsonStr = buffer.toString();
+            Log.i(LOG_TAG, forecastJsonStr);
         } catch (IOException e) {
             Log.e(LOG_TAG, "Error ", e);
             // If the code didn't successfully get the weather data, there's no point in attempting
