@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import org.json.JSONException;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -22,6 +24,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import static android.R.attr.data;
 import static android.R.attr.id;
 
 /**
@@ -77,8 +80,9 @@ public class ForecastFragment extends Fragment {
 
         // Will contain the raw JSON response as a string.
         String forecastJsonStr = null;
+        String[] data = new String[7];
 
-
+/*
         String[] data = {
                 "Mon 6/23 - Sunny - 31/17",
                 "Tue 6/24 - Foggy - 21/8",
@@ -88,6 +92,13 @@ public class ForecastFragment extends Fragment {
                 "Sat 6/28 - TRAPPED IN WEATHERSTATION - 23/18",
                 "Sun 6/29 - Sunny - 20/7"
         };
+        */
+        FetchWeatherTask weatherTask = new FetchWeatherTask();
+        try {
+            data = weatherTask.execute("94043").get();
+        } catch (Exception error) {
+            Log.e(LOG_TAG, "Error ", error);
+        }
 
         List<String> weekForeCast = new ArrayList<String>(Arrays.asList(data));
 
