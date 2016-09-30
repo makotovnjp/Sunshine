@@ -15,6 +15,6 @@
     <string name="pref_location_key" translatable="false">location</string>
 
     <!-- default postal code -->
-    <string name="pref_location_default">94043</string>
+    <string name="pref_location_default">1861528</string>
 
 </resources>
