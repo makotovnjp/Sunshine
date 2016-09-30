@@ -94,4 +94,20 @@
     <!-- Strings related to Notification preference -->
     <string name="pref_last_notification">last_notification</string>
 
+<<<<<<< HEAD
 </resources>
+=======
+    <string name="title_activity_detail">DetailActivity</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!--Label for the location preference -->
+    <string name="pref_location_label">Location</string>
+
+    <!--  key name for storing -->
+    <string name="pref_location_key" translatable="false">location</string>
+
+    <!-- default postal code -->
+    <string name="pref_location_default">1861528</string>
+
+</resources>
+>>>>>>> 1.01_hello_world
