@@ -166,9 +166,16 @@ public class ForecastFragment extends Fragment {
             // Will contain the raw JSON response as a string.
             String forecastJsonStr = null;
 
+            SharedPreferences prefs = PreferenceManager.getDefaultSharedPreferences(getActivity());
+            String units = prefs.getString(getString(R.string.pref_units_key),getString(R.string.pref_units_metric));
+            Log.i(LOG_TAG,"units = " + units);
+
             // UriのParameter
             String format = "json";
-            String units = "metric";
+            //String units = "metric";
+
+
+
             int numDays = 7;
 
             // 結果の文字列
